@@ -1,0 +1,52 @@
+.admin-menu {
+    background-image: linear-gradient(#005285, #32769c) !important;
+}
+
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    color: #fff;
+    background: rgba(0,0,0,0.2);
+    border-left-color: white;
+}
+
+#nav li.active a {
+	background-color: blue;
+}
+
+.header-web {
+	font-size: 45px;
+    font-weight: bold !important;
+    font-family: -webkit-pictograph;
+}
+
+/*.main-footer {
+  background-color: #292e31 !important;
+  color: white;
+}*/
+
+.skin-blue .main-header .navbar {
+    background-color: #37373a;
+}
+.skin-blue .main-header .navbar .nav>li>a:hover {
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin-top: 10px;
+}
+
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;   
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+    z-index:1032;
+}

@@ -1,6 +1,6 @@
 ## Laravel HolaHalo Katalog
 
-A simple catalog built with laravel 5.2
+A simple catalog built with laravel 5.7
 
 ### Installation Instruction
 Makes a bare clone of the external repository in a local directory

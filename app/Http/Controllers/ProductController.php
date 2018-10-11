@@ -73,6 +73,8 @@ class ProductController extends Controller
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $categories_id = $request->input('category_id');
+
         $photo     = $request->file('picture');
         // $RandomString = uniqid();
         // $photo = $request->file('picture')->storeAs('', $StringR .'.jpg');
@@ -83,6 +85,8 @@ class ProductController extends Controller
         $do             = new Product ($request->all());
         $do->picture    = $namaFile;
         $do->save();
+
+        $do->categories()->attach($categories_id);
 
         Session::flash('message','Data Produk Berhasil Ditambahkan');
 

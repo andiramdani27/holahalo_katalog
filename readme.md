@@ -5,8 +5,8 @@ A simple catalog built with laravel 5.2
 ### Installation Instruction
 Makes a bare clone of the external repository in a local directory
 ```
-git clone https://github.com/yevta/laravel-catalog.git
-cd laravel-catalog
+git clone https://github.com/andiramdani27/holahalo_katalog.git
+cd holahalo_katalog
 ```
 
 Secondly do an installation using composer

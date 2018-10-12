@@ -1,0 +1,2 @@
+username : admin@holahalo.com
+pass : admin27

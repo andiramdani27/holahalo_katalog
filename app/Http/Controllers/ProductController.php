@@ -217,6 +217,7 @@ class ProductController extends Controller
         // save product change
         $product->nama = $request->input('nama');
         $product->model = $request->input('model');
+        $product->kategori = $request->input('kategori');
         $product->save();
 
         Session::flash('message','Data Produk Berhasil Diperbarui');

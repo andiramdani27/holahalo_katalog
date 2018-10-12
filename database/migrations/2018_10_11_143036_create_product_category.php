@@ -13,14 +13,14 @@ class CreateProductCategory extends Migration
      */
     public function up()
     {
-        Schema::create('product_category', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('product_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+        // Schema::create('product_category', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->integer('product_id')->unsigned();
+        //     $table->integer('category_id')->unsigned();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
+        //     $table->foreign('product_id')->references('id')->on('products');
+        //     $table->foreign('category_id')->references('id')->on('categories');
+        // });
     }
 
     /**
@@ -30,8 +30,8 @@ class CreateProductCategory extends Migration
      */
     public function down()
     {
-        Schema::table('product_category', function (Blueprint $table) {
-            Schema::drop('product_category');
-        });
+        // Schema::table('product_category', function (Blueprint $table) {
+        //     Schema::drop('product_category');
+        // });
     }
 }

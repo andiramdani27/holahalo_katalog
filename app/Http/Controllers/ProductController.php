@@ -54,9 +54,9 @@ class ProductController extends Controller
     public function create()
     {   
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
-                    ->get(); 
+                    ->select('id','title')
+                    ->groupBy('id','title')
+                    ->get();  
 
         return view('product.create', compact('kategori'));
     }
@@ -73,7 +73,18 @@ class ProductController extends Controller
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categories_id = $request->input('category_id');
+        // $categories_id = $request->input('category_id');
+
+        // $catTitles = "";
+
+        // add title and comma for success message
+        // foreach ($categories_id as $index => $id) {
+        //     $catTitles .= Category::find($id)->title;
+        //     if($index+1 != count($categories_id))
+        //     {
+        //         $catTitles .= ", ";
+        //     }
+        // }
 
         $photo     = $request->file('picture');
         // $RandomString = uniqid();
@@ -86,7 +97,7 @@ class ProductController extends Controller
         $do->picture    = $namaFile;
         $do->save();
 
-        $do->categories()->attach($categories_id);
+        // $do->categories()->attach($categories_id);
 
         Session::flash('message','Data Produk Berhasil Ditambahkan');
 
@@ -170,9 +181,9 @@ class ProductController extends Controller
         $products = Product::find($id);
 
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
-                    ->get(); 
+                    ->select('id','title')
+                    ->groupBy('id','title')
+                    ->get();  
         
         return view('product.edit', compact('products','kategori'));
     }
@@ -206,7 +217,6 @@ class ProductController extends Controller
         // save product change
         $product->nama = $request->input('nama');
         $product->model = $request->input('model');
-        $product->kategori = $request->input('kategori');
         $product->save();
 
         Session::flash('message','Data Produk Berhasil Diperbarui');

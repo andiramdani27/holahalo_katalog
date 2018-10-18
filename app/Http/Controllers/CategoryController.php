@@ -39,7 +39,12 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request, [
+            'title'       => 'required|max:100|unique:Categories',
+            'description' => 'max:255'
+        ]);
+
         $db = new Category($request->all());
         $db->save();
 

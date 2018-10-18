@@ -2,6 +2,16 @@
 @section('content')
 
 <div class="container">
+	<div class="col-md-8">
+		@if ($errors->any())
+	        <div class="alert alert-danger">
+	            @foreach ($errors->all() as $error)
+	                {{ $error }}
+	            @endforeach
+	        </div>
+	    @endif
+	</div>
+
     <div class="col-md-6">
       	<div style="border: solid 1px blue;padding:10px;margin-bottom:5px;background-color:white"><label><b>Tambah Data kategori Produk</b></label></div>
       	<div class="box box-primary">

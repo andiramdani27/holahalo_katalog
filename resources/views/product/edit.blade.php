@@ -2,6 +2,16 @@
 @section('content')
 
 <div class="container">
+	<div class="col-md-8">
+		@if ($errors->any())
+	        <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+	        </div>
+	    @endif
+	</div>
+
     <div class="col-md-6">
       	<div style="border: solid 1px blue;padding:10px;margin-bottom:5px;background-color:white"><label><b>Edit Data Produk</b></label></div>
       	<div class="box box-primary">
@@ -14,16 +24,18 @@
 		              	<input type="text" name="model" class="form-control" placeholder="MODEL PRODUK" value="{{ $products->model }}"/>
 		            </div>
 		            <div class="form-group">
-		            	<div class="input-group">
-			              	<label>Kategori Produk</label>
-			              	<select class="form-control" name="kategori">
-			                	<option value='{{ $products->kategori }}' selected >{{ $products->kategori }}</option>
-			                	<option value="-">-----------------------------</option>
-				                @foreach($kategori as $data)
-				                    <option value='{{ $data->title }}'>{{ $data->title }}</option>
-				                @endforeach
-			              	</select>
-			            </div><!-- /.input group -->
+		              	<!-- VERSi MANY TO MANY -->
+		              	<select class="multi-select" id="category_id" name="category_id[]" data-placeholder="Please select category" multiple="multiple">
+			                @foreach($products->categories as $category)
+								<option value="{{ $category->id }}" selected>{{ $category->title }}</option>
+			                @endforeach
+
+							<option>---------------------</option>
+
+			                @foreach($kategori as $data)
+								<option value="{{ $data->id }}">{{ $data->title }}</option>
+			                @endforeach
+		                </select>
 					</div>
 					<div class="form-group">
 		              	<input type="file" id="picture" name="picture" class="form-control">

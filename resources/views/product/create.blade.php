@@ -24,24 +24,22 @@
 			            	<input type="text" name="model" class="form-control" placeholder="MODEL PRODUK" value="{{ old('model') }}"/>
 			            </div>
 			            <div class="form-group">
-			              	<div class="input-group">
-				              	<label>Kategori Produk</label><br>
+				            <label>Kategori Produk</label><br>
 
-				              	<!-- VERSi MANY TO MANY -->
-				              	<!-- <select class="form-control multiselect" id="category_id" name="category_id[]" data-placeholder="Please select category" multiple="multiple">
-					                @foreach($kategori as $data)
-									  <option value="{{ $data->id }}">{{ $data->title }}</option>
-					                @endforeach
-				                </select> -->
+			              	<!-- VERSi MANY TO MANY -->
+			              	<select class="multi-select" id="category_id" name="category_id[]" data-placeholder="Please select category" multiple="multiple">
+				                @foreach($kategori as $data)
+								  <option value="{{ $data->id }}">{{ $data->title }}</option>
+				                @endforeach
+			                </select>
 
 				                <!-- VERSI BIASA -->
-				                <select class="form-control multiselect" id="kategori" name="kategori">
+				               <!--  <select class="form-control multiselect" id="kategori" name="kategori">
 				                	<option value="">-</option>
 					                @foreach($kategori as $data)
 									  <option value="{{ $data->title }}">{{ $data->title }}</option>
 					                @endforeach
-				                </select>
-				            </div><!-- /.input group -->
+				                </select> -->
 			           	</div>
 			            <div class="form-group">
 			            	<label>Photo Produk</label>

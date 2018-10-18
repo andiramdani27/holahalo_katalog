@@ -50,3 +50,8 @@ div.dataTables_wrapper div.dataTables_paginate {
     right: -55px;
     z-index:1032;
 }
+
+/*custome multi select*/
+.select2-container {
+    width: 100% !important;
+}

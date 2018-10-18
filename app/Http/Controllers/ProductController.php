@@ -19,12 +19,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('categories')->get();
+
+        // $test = $products[0]->categories[0]->description;        
+
+        // dd($test);
 
         $kategori   = DB::table('categories')
                     ->select('title')
                     ->groupBy('title')
-                    ->get(); 
+                    ->get();
         
         return view('product.index', compact('products','kategori'));
     }
@@ -70,34 +74,36 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama'            => 'required|max:100',
+            'model'           => 'max:100',
+            'category_id'     => 'required|array',
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        // $categories_id = $request->input('category_id');
-
-        // $catTitles = "";
-
-        // add title and comma for success message
-        // foreach ($categories_id as $index => $id) {
-        //     $catTitles .= Category::find($id)->title;
-        //     if($index+1 != count($categories_id))
-        //     {
-        //         $catTitles .= ", ";
-        //     }
-        // }
+        $categories_id = $request->input('category_id');
 
         $photo     = $request->file('picture');
-        // $RandomString = uniqid();
-        // $photo = $request->file('picture')->storeAs('', $StringR .'.jpg');
-        $namaFile   = $photo->getClientOriginalName();
+        
+        // get only extention file
+        $extension = $photo->getClientOriginalExtension();
 
-        $request->file('picture')->move('picture', $namaFile);
+        // get filename with extention
+        $Name   = $photo->getClientOriginalName();
+        // get only filename
+        $filename = pathinfo($Name, PATHINFO_FILENAME);
+        
+        // get random string
+        $rs = uniqid();
 
-        $do             = new Product ($request->all());
-        $do->picture    = $namaFile;
-        $do->save();
+        $fixname = $filename. '_' . $rs . '.' . $extension;
 
-        // $do->categories()->attach($categories_id);
+        $request->file('picture')->move('picture', $fixname);
+
+        $db             = new Product ($request->all());
+        $db->picture    = $fixname;
+        $db->save();
+
+        $db->categories()->attach($categories_id);
 
         Session::flash('message','Data Produk Berhasil Ditambahkan');
 
@@ -178,7 +184,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::find($id);
+        
+        $products = Product::with('categories')->find($id);
+
+        $categories_id = array();
+        
+        foreach ($products->categories as $category) {
+            $categories_id[] = $category->id;
+        }
 
         $kategori   = DB::table('categories')
                     ->select('id','title')
@@ -198,27 +211,44 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama'            => 'required|max:100',
+            'model'           => 'max:100',
+            'category_id'     => 'required|array',
         ]);
+
+        // get categories id
+        $categories_id = $request->input('category_id');
 
         $product = Product::find($id);
 
         if ($request->picture) {
-            $photo     = $request->file('picture');
-            $namaFile   = $photo->getClientOriginalName();
+            // get only extention file
+            $extension = $photo->getClientOriginalExtension();
 
-            $request->file('picture')->move('picture', $namaFile);
+            // get filename with extention
+            $Name   = $photo->getClientOriginalName();
+            // get only filename
+            $filename = pathinfo($Name, PATHINFO_FILENAME);
+            
+            // get random string
+            $rs = uniqid();
+
+            $fixname = $filename. '_' . $rs . '.' . $extension;
+
+            $request->file('picture')->move('picture', $fixname);
 
             // save photo change
-            $product->picture = $namaFile;
+            $product->picture = $fixname;
             $product->save();
         }
 
         // save product change
         $product->nama = $request->input('nama');
         $product->model = $request->input('model');
-        $product->kategori = $request->input('kategori');
         $product->save();
+
+        // update pivot table
+        $product->categories()->sync($categories_id);
 
         Session::flash('message','Data Produk Berhasil Diperbarui');
 

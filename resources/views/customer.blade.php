@@ -41,7 +41,7 @@
 					                  	<option value="" disabled selected>FILTER BY CATEGORY</option>
 					                   	<option value="All">All Categories</option>
 					                    @foreach($kategori as $data)
-				                    		<option value='{{ $data->title }}'>{{ $data->title }}</option>
+				                    		<option value='{{ $data->id }}'>{{ $data->title }}</option>
 				                		@endforeach
 					                </select>
 			              		</div><!-- /.input group -->
@@ -79,7 +79,12 @@
 			                    	<img src='{{ url('picture') }}/{{ $data->picture }}' width='200px' height='200px'></a></td>
 			                    <td style='text-align:center'>{{ $data->nama }}</td>
 			                    <td style='text-align:center'>{{ $data->model }}</td>
-			                    <td style='text-align:center'>{{ $data->kategori }}</td>
+			                    <td style='text-align:center'>
+			                    	@foreach($data->categories as $index => $category)
+										{{ $category->title }}
+										@if($index+1 < count($data->categories)),@endif
+									@endforeach
+			                    </td>
 			                </tr>
 			            @endforeach
 

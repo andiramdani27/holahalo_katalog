@@ -26,11 +26,13 @@ class ProductController extends Controller
         // dd($test);
 
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
+                    ->select('id','title')
+                    ->groupBy('id','title')
                     ->get();
         
-        return view('product.index', compact('products','kategori'));
+        return view('product.index', ['products' => $products, 'kategori' => $kategori]);
+
+        // return view('product.index', compact('products','kategori'));
     }
 
     /**
@@ -40,14 +42,14 @@ class ProductController extends Controller
      */
     public function customer()
     {
-        $products = Product::all();
+        $products = Product::with('categories')->get();
 
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
+                    ->select('id','title')
+                    ->groupBy('id','title')
                     ->get(); 
-        
-        return view('customer', compact('products','kategori'));
+
+        return view('customer', ['products' => $products, 'kategori' => $kategori]); 
     }
 
     /**
@@ -132,18 +134,18 @@ class ProductController extends Controller
     {
         
         if ($request->input('filter') == "All") {
-            $products = Product::all();
+            $products = Product::with('categories')->get();
         }
         else {
-            $products = DB::table('products')
-            ->where('kategori', \Request::input('filter') )
-            ->orderBy('id', 'asc')
-            ->get();
+            $filter = $request->input('filter');
+            $products = Product::whereHas('categories', function($q) use ($filter) {
+                        $q->where('categories.id', $filter);
+                    })->get();
         }
 
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
+                    ->select('id','title')
+                    ->groupBy('id','title')
                     ->get(); 
 
         return view('product.index', compact('products','kategori'));
@@ -159,18 +161,18 @@ class ProductController extends Controller
     public function FilterDataProduk(Request $request)
     {
         if ($request->input('filter') == "All") {
-            $products = Product::all();
+            $products = Product::with('categories')->get();
         }
         else {
-            $products = DB::table('products')
-            ->where('kategori', \Request::input('filter') )
-            ->orderBy('id', 'asc')
-            ->get();
+            $filter = $request->input('filter');
+            $products = Product::whereHas('categories', function($q) use ($filter) {
+                        $q->where('categories.id', $filter);
+                    })->get();
         }
 
         $kategori   = DB::table('categories')
-                    ->select('title')
-                    ->groupBy('title')
+                    ->select('id','title')
+                    ->groupBy('id','title')
                     ->get(); 
 
         return view('customer', compact('products','kategori'));

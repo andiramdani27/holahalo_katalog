@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" type="text/css" href="{!! asset('admin/assets/css/style.css') !!}">
 
+    <link rel="stylesheet" type="text/css" href="{!! asset('packages/select2/css/select2.min.css') !!}">
+
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -47,6 +49,7 @@
     <script src="{!! asset('admin/assets/js/jquery.dataTables.min.js') !!}"></script>
     <script src="{!! asset('admin/assets/js/dataTables.bootstrap.min.js') !!}"></script>
     <script src="{!! asset('admin/assets/js/jquery-ui-1.10.3.custom.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('packages/select2/js/select2.min.js') !!}" type="text/javascript"></script>
 
     <!-- Javascript untuk datatable -->
     <script type="text/javascript">
@@ -84,6 +87,13 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.multi-select').select2();
+        });
+    </script>
+
 
 </body>
 </html>

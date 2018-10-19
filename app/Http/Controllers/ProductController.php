@@ -21,18 +21,12 @@ class ProductController extends Controller
     {
         $products = Product::with('categories')->get();
 
-        // $test = $products[0]->categories[0]->description;        
-
-        // dd($test);
-
         $kategori   = DB::table('categories')
                     ->select('id','title')
                     ->groupBy('id','title')
                     ->get();
-        
-        return view('product.index', ['products' => $products, 'kategori' => $kategori]);
 
-        // return view('product.index', compact('products','kategori'));
+        return view('product.index', compact('products','kategori'));
     }
 
     /**
@@ -49,7 +43,7 @@ class ProductController extends Controller
                     ->groupBy('id','title')
                     ->get(); 
 
-        return view('customer', ['products' => $products, 'kategori' => $kategori]); 
+        return view('customer', compact('products','kategori')); 
     }
 
     /**
@@ -222,6 +216,8 @@ class ProductController extends Controller
         $categories_id = $request->input('category_id');
 
         $product = Product::find($id);
+
+        $photo     = $request->file('picture');
 
         if ($request->picture) {
             // get only extention file

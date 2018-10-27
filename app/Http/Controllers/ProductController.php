@@ -220,6 +220,14 @@ class ProductController extends Controller
         $photo     = $request->file('picture');
 
         if ($request->picture) {
+
+            $file = public_path().'/picture/'.$product->picture;
+
+            if (file_exists($file)) {
+                // delete file from repository public/picture
+                unlink($file);
+            }
+
             // get only extention file
             $extension = $photo->getClientOriginalExtension();
 

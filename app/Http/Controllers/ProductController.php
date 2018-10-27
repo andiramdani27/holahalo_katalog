@@ -221,6 +221,7 @@ class ProductController extends Controller
 
         if ($request->picture) {
 
+            // get old file
             $file = public_path().'/picture/'.$product->picture;
 
             if (file_exists($file)) {

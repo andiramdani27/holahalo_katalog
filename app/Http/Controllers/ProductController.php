@@ -263,6 +263,13 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $file = public_path().'/picture/'.$product->picture;
+
+        if (file_exists($file)) {
+            // delete file from repository public/picture
+            unlink($file);
+        }
+
         $product->delete();
 
         Session::flash('message','Data Produk Berhasil Dihapus');

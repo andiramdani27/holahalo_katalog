@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use DB;
-use App\category;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {   
         $this->validate($request, [
-            'title'       => 'required|max:100|unique:Categories',
+            'title'       => 'required|max:100|unique:categories',
             'description' => 'max:255'
         ]);
 

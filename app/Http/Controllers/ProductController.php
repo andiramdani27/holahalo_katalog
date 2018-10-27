@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Session;
 // use Illuminate\Support\Str;
 
 use DB;
-use App\product;
-use App\category;
+use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -262,7 +262,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        
+
         $product->delete();
 
         Session::flash('message','Data Produk Berhasil Dihapus');

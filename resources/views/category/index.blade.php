@@ -29,7 +29,7 @@
 
 	<div class="container">
 		<div class="row">
-		  	<div class="col-md-11">
+		  	<div class="col-md-10">
 		  		<a href="/add-category"><input type="button" class="btn btn-success" value="Tambah Kategori" style="margin:10px 0"></a>
 
 		        <div class="table-responsive">               

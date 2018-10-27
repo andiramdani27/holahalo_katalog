@@ -30,7 +30,7 @@
 
 	<div class="container">
 		<div class="row">
-		  	<div class="col-md-11">
+		  	<div class="col-md-10">
 		     	<div class="box-body">
 		      		<form action="/cari-produk" method="POST" style="float: right">
 			            <div class="form-inline">

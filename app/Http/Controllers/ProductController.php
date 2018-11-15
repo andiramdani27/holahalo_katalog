@@ -80,23 +80,27 @@ class ProductController extends Controller
 
         $photo     = $request->file('picture');
         
-        // get only extention file
-        $extension = $photo->getClientOriginalExtension();
+        // // get only extention file
+        // $extension = $photo->getClientOriginalExtension();
 
-        // get filename with extention
-        $Name   = $photo->getClientOriginalName();
-        // get only filename
-        $filename = pathinfo($Name, PATHINFO_FILENAME);
+        // // get filename with extention
+        // $Name   = $photo->getClientOriginalName();
+        // // get only filename
+        // $filename = pathinfo($Name, PATHINFO_FILENAME);
         
-        // get random string
-        $rs = uniqid();
+        // // get random string
+        // $rs = uniqid();
 
-        $fixname = $filename. '_' . $rs . '.' . $extension;
+        // $fixname = $filename. '_' . $rs . '.' . $extension;
 
-        $request->file('picture')->move('picture', $fixname);
+        // $request->file('picture')->move('picture', $fixname);
+
+        $filename = time() . '.png';
+
+        $request->file('picture')->storeAs('public/image', $filename);
 
         $db             = new Product ($request->all());
-        $db->picture    = $fixname;
+        $db->picture    = $filename;
         $db->save();
 
         $db->categories()->attach($categories_id);

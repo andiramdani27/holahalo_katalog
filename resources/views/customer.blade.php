@@ -76,7 +76,10 @@
 			                <tr>
 			                    <td style='text-align:center'>
 			                    	<a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox">
-			                    	<img src='{{ url('picture') }}/{{ $data->picture }}' width='200px' height='200px'></a></td>
+
+			                    	<img src='{{ asset('storage/image/'. $data->picture) }}' width='200px' height='200px'></a>
+
+			                    </td>
 			                    <td style='text-align:center'>{{ $data->nama }}</td>
 			                    <td style='text-align:center'>{{ $data->model }}</td>
 			                    <td style='text-align:center'>

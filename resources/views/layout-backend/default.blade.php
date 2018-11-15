@@ -34,34 +34,29 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
-    @guest
-        @include('errors.411')
-    @else
+    @include('layout-backend.header')
 
-        @include('layout-backend.header')
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
+                            @yield('content')
 
-                                @yield('content')
-
-                            </div>
                         </div>
                     </div>
-                </section>
-            </div>
-
-        @include('layout-backend.footer')
-
-            </div><!-- /.content-wrapper -->
+                </div>
+            </section>
         </div>
-        
-    @endguest
+
+    @include('layout-backend.footer')
+
+        </div><!-- /.content-wrapper -->
+    </div>
+    
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{!! asset('admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>

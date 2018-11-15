@@ -86,13 +86,13 @@
 									@endforeach
 			                    </td>
 			                    <td width="15%">
-			                      	<form class="" action="/products/{{ $data->id }}" method="POST">
+			                      	<form class="" action="/product/{{ $data->id }}" method="POST">
 			                          	<input type="hidden" name="_method" value="delete">
 			                          	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			                          	<button type="submit" name="name" class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='DELETE' style="float:left;margin-right: 5px;"><span class='glyphicon glyphicon-trash'></span></button>
 			                      	</form>
 
-			                        <a href='/products/{{ $data->id }}/edit' class='btn btn-info' data-toggle='tooltip' data-placement='top' title='EDIT' style="display: inline-block;margin-right: 5px;float:left"><span class='glyphicon glyphicon-edit'></span></a>
+			                        <a href='/product/{{ $data->id }}/edit' class='btn btn-info' data-toggle='tooltip' data-placement='top' title='EDIT' style="display: inline-block;margin-right: 5px;float:left"><span class='glyphicon glyphicon-edit'></span></a>
 			                    </td>
 			                </tr>
 			            @endforeach

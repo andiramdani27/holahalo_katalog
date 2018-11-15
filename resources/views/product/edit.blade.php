@@ -16,7 +16,7 @@
       	<div style="border: solid 1px blue;padding:10px;margin-bottom:5px;background-color:white"><label><b>Edit Data Produk</b></label></div>
       	<div class="box box-primary">
 	        <div class="box-body">
-	          	<form action="/products/{{ $products->id }}" name="modal_popup" enctype="multipart/form-data" method="POST">
+	          	<form action="/product/{{ $products->id }}" name="modal_popup" enctype="multipart/form-data" method="POST">
 		            <div class="form-group">
 		              	<input type="text" name="nama" class="form-control" placeholder="NAMA PRODUK" value="{{ $products->nama }}" required/>
 		            </div>

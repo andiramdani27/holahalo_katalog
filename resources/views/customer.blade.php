@@ -32,7 +32,7 @@
 		<div class="row">
 		  	<div class="col-md-12">
 		     	<div class="box-body">
-		      		<form action="/filter-produk" method="POST" style="float: right">
+		      		<form action="/filter-produk" method="GET" style="float: right">
 			            <div class="form-inline">
 			              	<div class="form-group">
 			                	<div class="input-group">
@@ -61,7 +61,7 @@
 		<div class="row">
 			<div class="col-md-12">
 		        <div class="table-responsive">               
-		          	<table id="example2" class="table table-hover" cellspacing="0" width="100%">
+		          	<table class="table table-hover" cellspacing="0" width="100%">
 			            <thead>
 			            	<tr style='background-color: #3c8dbc;color: white;'>
 				                <th>PICTURE</th>
@@ -94,6 +94,11 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- <div class="text-center">{{ $products->links() }}</div> -->
+
+	<!-- cara untuk link dengan parameter lain -->
+	<div class="text-center">{{ $products->appends(Request::input())->render() }}</div>
 
 	<hr>
 

@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function customer()
     {
-        $products = Product::with('categories')->get();
+        $products = Product::with('categories')->paginate(5);
 
         $kategori   = DB::table('categories')
                     ->select('id','title')
@@ -155,13 +155,13 @@ class ProductController extends Controller
     public function FilterDataProduk(Request $request)
     {
         if ($request->input('filter') == "All") {
-            $products = Product::with('categories')->get();
+            $products = Product::with('categories')->paginate(5);
         }
         else {
             $filter = $request->input('filter');
             $products = Product::whereHas('categories', function($q) use ($filter) {
                         $q->where('categories.id', $filter);
-                    })->get();
+                    })->paginate(5);
         }
 
         $kategori   = DB::table('categories')

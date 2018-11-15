@@ -69,7 +69,7 @@ Route::get('/add-category','CategoryController@create');
 Route::post('/cari-produk','ProductController@CariDataProduk');
 
 //cari data produk frontend
-Route::post('/filter-produk','ProductController@FilterDataProduk');
+Route::get('/filter-produk','ProductController@FilterDataProduk');
 
 Auth::routes();
 
